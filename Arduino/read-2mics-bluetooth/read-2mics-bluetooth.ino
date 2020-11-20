@@ -95,16 +95,16 @@ void error(const __FlashStringHelper*err) {
 */
 /**************************************************************************/
 
-int analogPin = A1;
-int val;  // variable to store the value read
+int analogPin1 = A1;
+int analogPin2 = A2;
+int val1;  // variable to store the value read
+int val2;  // variable to store the value read
 
 void setup(void)
 {
   delay(500);
 
   Serial.begin(115200);
-  Serial.println(F("Adafruit Bluefruit Command <-> Data Mode Example"));
-  Serial.println(F("------------------------------------------------"));
 
   /* Initialise the module */
   Serial.print(F("Initialising the Bluefruit LE module: "));
@@ -159,11 +159,19 @@ void setup(void)
   Serial.println(F("******************************"));
 }
 
-
 void loop(void) {
+  delay(1);
+  val1 = analogRead(analogPin1);  // read the input pin
+  val2 = analogRead(analogPin2);  // read the input pin
 
-  val = analogRead(analogPin);  // read the input pin
-  //ble.print(val);               //send value to bluefruit uart
-  //ble.println();  //print newline so app knows to plot the values
-  Serial.println(val);
+  
+  ble.print(val1);
+  ble.print(",");
+  ble.println(val2);
+  
+  
+  //Serial.print(val1);
+  //Serial.print(",");
+  //Serial.println(val2);
+  
 }

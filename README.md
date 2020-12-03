@@ -7,24 +7,24 @@ python osc_server_test.py
 ```
 
 ### Test OSC client
-In `osc_client_test.py`, update the IP as `127.0.0.1`
+In `osc_client_test.py`, update the IP as `127.0.0.1`.
 
 ```
 python osc_client_test.py
 ```
 The server window should receive any message sent from this test client side. 
 
-If it work, goes back to root folder, and update the IP in `main.py`
+If it work, goes back to root folder, and update the IP in `main.py`.
 ```
 python main.py
 ```
-This allows you to test with OSC and BLE, with the end device as your laptop. 
+This allows you to test with OSC and BLE, with the end device as your laptop. The OSC message would only be sent when there is a breath detected. 
 
 ## Test OSC with Unity
 
 ### Unity Setup
-* Unity version: 2019.4.1f1, installed with Android Build Support 
-* The scene is located in `VR` folder
+* Unity version: 2019.4.1f1, installed with Android Build Support.
+* The scene is located in `VR` folder.
 
 
 ## Test OSC with Oculus

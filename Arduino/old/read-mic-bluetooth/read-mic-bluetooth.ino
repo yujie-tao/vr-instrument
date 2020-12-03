@@ -163,7 +163,7 @@ void setup(void)
 void loop(void) {
 
   val = analogRead(analogPin);  // read the input pin
-  //ble.print(val);               //send value to bluefruit uart
-  //ble.println();  //print newline so app knows to plot the values
-  Serial.println(val);
+  ble.print(val);               //send value to bluefruit uart
+  ble.println();  //print newline so app knows to plot the values
+  //Serial.println(val);
 }

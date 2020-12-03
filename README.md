@@ -9,8 +9,6 @@
 
 ### Build for Oculus
 * Go to `File --> Build Setting --> Andrioid --> Switch Platform`. 
-* In Build Setting window, click `Player Setting` and make sure 
-* `Window --> Package Manager --> XR Plugin --> Install`
-* `Project Settings --> XR Plugin Managment--> Install Oculus XR Plugin`
-* Okay, now you are ready to build for Oculus! Connect Oculus with your laptop, go back to `Build Setting`, add open scenes and click `Build and Run`.
-
+* In Build Setting window, click `Player Setting --> XR Settings`, make sure `Virtual Reality Supported` is checked. And then add `Oculus` as a Virtual Reality SDKs. 
+* Go to `Other Settings` and remove Vulkan froom the graphic API list.
+* Now you should be ready to build for the Oculus. Refer to [this tutorial](https://www.youtube.com/watch?v=eySe4Wj6xbk&t=135s) for further instructions. 

@@ -7,7 +7,7 @@ python osc_server_test.py
 ```
 
 ### Test OSC client
-In `osc_client_test`, update the IP as `127.0.0.1`
+In `osc_client_test.py`, update the IP as `127.0.0.1`
 
 ```
 osc_client_test.py

@@ -14,7 +14,8 @@ python osc_client_test.py
 ```
 The server window should receive any message sent from this test client side. 
 
-If it work, goes back to root folder, and update the IP in `main.py`.
+If it works, go back to root folder, and update the IP in `main.py`.
+
 ```
 python main.py
 ```

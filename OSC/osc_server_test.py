@@ -22,7 +22,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     dispatcher = dispatcher.Dispatcher()
-    dispatcher.map("/motor", msg_handler)
+    dispatcher.map("/sound", msg_handler)
 
     server = osc_server.ThreadingOSCUDPServer((args.ip, args.port), dispatcher)
     print("Serving on {}".format(server.server_address))

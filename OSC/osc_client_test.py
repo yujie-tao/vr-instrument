@@ -4,7 +4,8 @@ from pythonosc import udp_client
 
 # OSC server address
 # ================== #
-ip = "127.0.0.1"
+ip = "127.0.0.1"  # use "127.0.0.1" when testing on unity
+# ip = "192.168.0.184"  # or local Oculus IP when testing with Oculus
 port = 5006
 # ================== #
 

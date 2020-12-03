@@ -1,8 +1,10 @@
-# vr-instrument
+# Breath as Input for VR Instrument 
+
 ## Test OSC without Unity
 ### Setup OSC server
 ```
 cd OSC
+pip install python-osc
 python osc_server_test.py
 ```
 

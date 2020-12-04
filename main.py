@@ -1,3 +1,4 @@
+from pythonosc import udp_client
 import numpy as np
 import serial  # for communication to arduino
 import time
@@ -11,6 +12,16 @@ time.sleep(5)  # there needs to be this delay here to let Arduino boot
 ser.flushInput()
 
 print("connected!")
+
+# OSC server address
+# ================== #
+ip = "127.0.0.1"  # use "127.0.0.1" when testing on unity
+# ip = "192.168.0.184"  # or local Oculus IP when testing with Oculus
+port = 5006
+# ================== #
+
+client = udp_client.SimpleUDPClient(ip, port)
+print("connected to OSC server at " + ip + ":" + str(port))
 
 # length of time recording
 seconds = 10
@@ -36,12 +47,15 @@ while True:
 
     if bluetooth_signal == b"1\r\n":
         ####### send OSC sound here ########
-        print("sound")  # I print here to the terminal for debugging
+        msg = 1
+        client.send_message("/sound", msg)
+        # I print here to the terminal for debugging
+        print("Sent: " + int(msg))
     elif bluetooth_signal == b"0\r\n":
         ####### end OSC sound here #########
-        print("end sound")  # I print here to the terminal for debugging
+        # print("end sound")  # I print here to the terminal for debugging
 
-    # record the signal, decode outside the loop to save time
+        # record the signal, decode outside the loop to save time
     data.append(bluetooth_signal)
 
 print("end data flow")

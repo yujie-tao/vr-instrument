@@ -25,15 +25,15 @@ int val;  // variable to store the value read
 
 // Low-pass filter just to clean some of the noise
 #include <filters.h>
-const float cutoffFreq   = 200.0;  //Cutoff frequency in Hz
-const float samplingTime = 0.001; //Sampling time in seconds.
+const float cutoffFreq   = 100.0;  //Cutoff frequency in Hz
+const float samplingTime = 0.1; //Sampling time in seconds.
 IIR::ORDER  order  = IIR::ORDER::OD1; // Order (OD1 to OD4)
 Filter filter(cutoffFreq, samplingTime, order);
 float filteredVal;
 
 // thresholds
-const int thresholdHigh = 800;
-const int thresholdLow = 300;
+const int thresholdHigh = 675;
+const int thresholdLow = 350;
 bool blow = false; // store last state
 
 // timings
@@ -70,5 +70,5 @@ void loop(){
     bluetooth.println(0);
     blow = false;
   }
-  //Serial.println(filteredVal);          // debug value
+  Serial.println(filteredVal);          // debug value
  }

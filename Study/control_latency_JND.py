@@ -3,7 +3,7 @@
 from pythonosc import udp_client
 import serial # for communication to arduino
 import time # timing of delays
-import struct # for converting integers to bytes
+#import struct # for converting integers to bytes
 import random # for picking random variables
 import csv # save our results
 import sys
@@ -22,7 +22,7 @@ print("connected to arduino!")
 # OSC server address
 # ================== #
 # ip = "127.0.0.1"  # use "127.0.0.1" when testing on unity
-ip = "192.168.1.9"  # or local Oculus IP when testing with Oculus, changes with networks,
+ip = "192.168.2.165"  # or local Oculus IP when testing with Oculus, changes with networks,
 # download sidequest https://sidequestvr.com/
 # connect w/ cable, seem the top bar of sidequest to get the IP
 port = 5006
@@ -43,7 +43,7 @@ def check_response(response):
         return (False, response)
 
 global_start_delay = 1.25 # start with delay that can easily be felt
-trials = 25
+trials = 50
 delay_tracker = [] # keeps track of the delaylitude progressions
 trial_tracker = [] # counts valid trials
 counter = 0
@@ -89,7 +89,7 @@ for i in range(1, trials+1):
             response = input("Did you feel latency? Y/N[enter]")
             response_valid, response = check_response(response)
             if response == "Y":
-                delay-= 0.075
+                delay-= 0.05
             else: 
                 delay+= 0.025
             if response_valid:

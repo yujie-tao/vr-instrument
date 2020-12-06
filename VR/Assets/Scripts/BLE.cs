@@ -6,12 +6,14 @@ using System;
 
 public class BLE : MonoBehaviour
 {
+    public AudioSource audioSource;
     private BluetoothHelper bluetoothHelper;
     private float timer;
 
-    private string deviceName = "Yujie Tao";
+    private string deviceName = "BLE Device";
     private string serverUUID = "1010";
     private string charUUID = "1111";
+    private int _last = 0;
 
     void Start()
     {
@@ -54,6 +56,10 @@ public class BLE : MonoBehaviour
             {
                 // Debug.Log(characteristic.getName());
                 Debug.Log(value[0]);
+                if (value[0] == 35 && _last != value[0]){
+                    audioSource.Play();
+                }
+                _last = value[0];
             };
 
             // BluetoothHelperService service = new BluetoothHelperService("FFE0");

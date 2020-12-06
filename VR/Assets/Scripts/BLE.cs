@@ -10,9 +10,9 @@ public class BLE : MonoBehaviour
     private BluetoothHelper bluetoothHelper;
     private float timer;
 
-    private string deviceName = "BLE Device";
-    private string serverUUID = "1010";
-    private string charUUID = "1111";
+    private string deviceName = "Adafruit Bluefruit LE";
+    private string serverUUID = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E";
+    private string charUUID = "6E400003-B5A3-F393-E0A9-E50E24DCCA9E";
     private int _last = 0;
 
     void Start()
@@ -56,7 +56,7 @@ public class BLE : MonoBehaviour
             {
                 // Debug.Log(characteristic.getName());
                 Debug.Log(value[0]);
-                if (value[0] == 35 && _last != value[0]){
+                if (value[0] == 49 && _last != value[0]){
                     audioSource.Play();
                 }
                 _last = value[0];

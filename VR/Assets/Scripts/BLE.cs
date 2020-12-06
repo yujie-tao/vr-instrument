@@ -8,20 +8,13 @@ public class BLE : MonoBehaviour
 {
     private BluetoothHelper bluetoothHelper;
     private float timer;
+
+    private string deviceName = "Yujie Tao";
+    private string serverUUID = "1010";
+    private string charUUID = "1111";
+
     void Start()
     {
-        // try{
-        //     bluetoothHelper.ScanNearbyDevices();
-        //     // BluetoothHelper.BLE = true;  //use Bluetooth Low Energy Technology
-        //     // bluetoothHelper = BluetoothHelper.GetInstance();
-
-        //     // bluetoothHelper.setDeviceName("Adafruit Bluefruit LE"); // change the device name to microcontroller
-        //     // bluetoothHelper.Connect();
-        //     // Debug.Log("Connecting"); 
-        // } catch(Exception ex){
-        //     // bluetoothHelper.ScanNearbyDevices();
-        //     Debug.Log(ex.StackTrace);
-        // }
         timer = 0;
         try{
             Debug.Log("HI");
@@ -40,8 +33,8 @@ public class BLE : MonoBehaviour
                 }
 
                 Debug.Log("Connected");
-                BluetoothHelperCharacteristic c = new BluetoothHelperCharacteristic("1111");
-                c.setService("1010");
+                BluetoothHelperCharacteristic c = new BluetoothHelperCharacteristic(charUUID);
+                c.setService(serverUUID);
                 bluetoothHelper.Subscribe(c);
                 //sendData();
             };
@@ -59,9 +52,8 @@ public class BLE : MonoBehaviour
             };
             bluetoothHelper.OnCharacteristicChanged += (helper, value, characteristic) =>
             {
-                Debug.Log(characteristic.getName());
-                // Debug.Log(value[0]);
-                Debug.Log(value);
+                // Debug.Log(characteristic.getName());
+                Debug.Log(value[0]);
             };
 
             // BluetoothHelperService service = new BluetoothHelperService("FFE0");
@@ -86,10 +78,9 @@ public class BLE : MonoBehaviour
     }
 
     private void OnScanEnded(BluetoothHelper helper, LinkedList<BluetoothDevice> devices){
-        Debug.Log("Found " + devices.Count);
+        Debug.Log("FOund " + devices.Count);
         if(devices.Count == 0){
-            // bluetoothHelper.ScanNearbyDevices();
-            Debug.Log(0);
+            bluetoothHelper.ScanNearbyDevices();
             return;
         }
 
@@ -98,19 +89,18 @@ public class BLE : MonoBehaviour
             Debug.Log(d.DeviceName);
         }
             
-        // try
-        // {
-        //     bluetoothHelper.setDeviceName("Adafruit Bluefruit LE"); // change the device name to microcontroller
-        //     bluetoothHelper.Connect();
-        //     Debug.Log("Connecting"); 
-        // }catch(Exception ex)
-        // {
-        //     bluetoothHelper.ScanNearbyDevices();
-        //     Debug.Log(ex.Message);
-        // }
+        try
+        {
+            bluetoothHelper.setDeviceName(deviceName);
+            bluetoothHelper.Connect();
+            Debug.Log("Connecting");
+        }catch(Exception ex)
+        {
+            bluetoothHelper.ScanNearbyDevices();
+            Debug.Log(ex.Message);
+        }
 
     }
-
 
     void OnDestroy()
     {
@@ -123,13 +113,12 @@ public class BLE : MonoBehaviour
             return;
         if(!bluetoothHelper.isConnected())
             return;
-        timer += Time.deltaTime;
+        // timer += Time.deltaTime;
 
-        if(timer < 5)
-            return;
-        timer = 0;
-        sendData();
-        // read();
+        // if(timer < 5)
+        //     return;
+        // timer = 0;
+        read();
     }
 
     void sendData(){
@@ -139,16 +128,17 @@ public class BLE : MonoBehaviour
         // bluetoothHelper.WriteCharacteristic(ch, new byte[]{0x44, 0x55, 0xff});
 
         Debug.Log("Sending");
-        BluetoothHelperCharacteristic ch = new BluetoothHelperCharacteristic("1111");
-        ch.setService("1010"); //this line is mandatory!!!
+        BluetoothHelperCharacteristic ch = new BluetoothHelperCharacteristic(charUUID);
+        ch.setService(serverUUID); //this line is mandatory!!!
         bluetoothHelper.WriteCharacteristic(ch, "10001000"); //string: 10001000 is this binary? no, as string.
     }
 
     void read(){
-        BluetoothHelperCharacteristic ch = new BluetoothHelperCharacteristic("1111");
-        ch.setService("1010");//this line is mandatory!!!
+        BluetoothHelperCharacteristic ch = new BluetoothHelperCharacteristic(charUUID);
+        ch.setService(serverUUID);//this line is mandatory!!!
 
         bluetoothHelper.ReadCharacteristic(ch);
         //Debug.Log(System.Text.Encoding.ASCII.GetString(x));
     }
+
 }

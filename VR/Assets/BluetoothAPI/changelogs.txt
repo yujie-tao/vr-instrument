@@ -1,3 +1,5 @@
++ 5.4.5
+    - Fix bug on iOS and macOS causing app crash
 + 5.4.4
     - RSSI value available when scanning for devices
     - Fix bug causing OnConnectionFailed event for fired on MacOS and iOS

@@ -28,8 +28,8 @@ public class BLEServicesManager : MonoBehaviour
                 }
 
                 Debug.Log("Connected");
-                BluetoothHelperCharacteristic c = new BluetoothHelperCharacteristic("1111");
-                c.setService("1010");
+                BluetoothHelperCharacteristic c = new BluetoothHelperCharacteristic("ffe1");
+                c.setService("ffe0");
                 bluetoothHelper.Subscribe(c);
                 //sendData();
             };
@@ -48,8 +48,7 @@ public class BLEServicesManager : MonoBehaviour
             bluetoothHelper.OnCharacteristicChanged += (helper, value, characteristic) =>
             {
                 Debug.Log(characteristic.getName());
-                // Debug.Log(value[0]);
-                Debug.Log(value);
+                Debug.Log(value[0]);
             };
 
             // BluetoothHelperService service = new BluetoothHelperService("FFE0");
@@ -87,9 +86,9 @@ public class BLEServicesManager : MonoBehaviour
             
         try
         {
-            bluetoothHelper.setDeviceName("BLE Device"); // change the device name to microcontroller
+            bluetoothHelper.setDeviceName("HC-08");
             bluetoothHelper.Connect();
-            Debug.Log("Connecting"); 
+            Debug.Log("Connecting");
         }catch(Exception ex)
         {
             bluetoothHelper.ScanNearbyDevices();
@@ -115,7 +114,6 @@ public class BLEServicesManager : MonoBehaviour
             return;
         timer = 0;
         sendData();
-        // read();
     }
 
     void sendData(){
@@ -125,14 +123,14 @@ public class BLEServicesManager : MonoBehaviour
         // bluetoothHelper.WriteCharacteristic(ch, new byte[]{0x44, 0x55, 0xff});
 
         Debug.Log("Sending");
-        BluetoothHelperCharacteristic ch = new BluetoothHelperCharacteristic("1111");
-        ch.setService("1010"); //this line is mandatory!!!
+        BluetoothHelperCharacteristic ch = new BluetoothHelperCharacteristic("19B10001-E8F2-537E-4F6C-D104768A1214");
+        ch.setService("19B10000-E8F2-537E-4F6C-D104768A1214"); //this line is mandatory!!!
         bluetoothHelper.WriteCharacteristic(ch, "10001000"); //string: 10001000 is this binary? no, as string.
     }
 
     void read(){
-        BluetoothHelperCharacteristic ch = new BluetoothHelperCharacteristic("1111");
-        ch.setService("1010");//this line is mandatory!!!
+        BluetoothHelperCharacteristic ch = new BluetoothHelperCharacteristic("2A24");
+        ch.setService("180A");//this line is mandatory!!!
 
         bluetoothHelper.ReadCharacteristic(ch);
         //Debug.Log(System.Text.Encoding.ASCII.GetString(x));

@@ -10,6 +10,18 @@ public class BLE : MonoBehaviour
     private float timer;
     void Start()
     {
+        // try{
+        //     bluetoothHelper.ScanNearbyDevices();
+        //     // BluetoothHelper.BLE = true;  //use Bluetooth Low Energy Technology
+        //     // bluetoothHelper = BluetoothHelper.GetInstance();
+
+        //     // bluetoothHelper.setDeviceName("Adafruit Bluefruit LE"); // change the device name to microcontroller
+        //     // bluetoothHelper.Connect();
+        //     // Debug.Log("Connecting"); 
+        // } catch(Exception ex){
+        //     // bluetoothHelper.ScanNearbyDevices();
+        //     Debug.Log(ex.StackTrace);
+        // }
         timer = 0;
         try{
             Debug.Log("HI");
@@ -76,7 +88,8 @@ public class BLE : MonoBehaviour
     private void OnScanEnded(BluetoothHelper helper, LinkedList<BluetoothDevice> devices){
         Debug.Log("Found " + devices.Count);
         if(devices.Count == 0){
-            bluetoothHelper.ScanNearbyDevices();
+            // bluetoothHelper.ScanNearbyDevices();
+            Debug.Log(0);
             return;
         }
 
@@ -85,18 +98,19 @@ public class BLE : MonoBehaviour
             Debug.Log(d.DeviceName);
         }
             
-        try
-        {
-            bluetoothHelper.setDeviceName("Adafruit Bluefruit LE"); // change the device name to microcontroller
-            bluetoothHelper.Connect();
-            Debug.Log("Connecting"); 
-        }catch(Exception ex)
-        {
-            bluetoothHelper.ScanNearbyDevices();
-            Debug.Log(ex.Message);
-        }
+        // try
+        // {
+        //     bluetoothHelper.setDeviceName("Adafruit Bluefruit LE"); // change the device name to microcontroller
+        //     bluetoothHelper.Connect();
+        //     Debug.Log("Connecting"); 
+        // }catch(Exception ex)
+        // {
+        //     bluetoothHelper.ScanNearbyDevices();
+        //     Debug.Log(ex.Message);
+        // }
 
     }
+
 
     void OnDestroy()
     {

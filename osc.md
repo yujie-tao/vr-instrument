@@ -38,3 +38,7 @@ This allows you to test with OSC and BLE, with the end device as your laptop. Th
 * Now you should be ready to build for the Oculus. Refer to [this tutorial](https://www.youtube.com/watch?v=eySe4Wj6xbk&t=135s) for further instructions. 
 
 ### Update OSC server IP
+* Install SideQuest.
+* Connect the oculus to laptop and launch SideQuest.
+* The IP of the Oculus is at the top menu bar. 
+* Update the IP address in `main.py`.

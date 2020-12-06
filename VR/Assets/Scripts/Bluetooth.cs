@@ -16,11 +16,14 @@ public class Bluetooth : MonoBehaviour
         try{
             Debug.Log("Hello");
             x="";
-            BTHelper = BluetoothHelper.GetInstance("RN-42");
-            // Debug.Log(BTHelper.DeviceName);
+            BTHelper = BluetoothHelper.GetInstance("Yujie Tao");
+            Debug.Log(BTHelper.isDevicePaired());
             BTHelper.setTerminatorBasedStream("\n");
             BTHelper.OnConnected += OnBluetoothConnected; //OnBluetoothConnected is a function defined later on
-            
+            BTHelper.OnConnectionFailed += OnBluetoothConnectedFailed;
+
+            BTHelper.Connect();
+            Debug.Log(BTHelper.isConnected());
             // BTHelper.OnDataReceived += () => {
             //  //this is called when you receive data FROM your arduino
             //  string receivedData;
@@ -48,12 +51,22 @@ public class Bluetooth : MonoBehaviour
     }
 
     void Update(){
-         if(BTHelper.Available){
-            string msg = BTHelper.Read();
-            Debug.Log(msg);
-        } else {
-            Debug.Log("No incoming message");
+        //  if(BTHelper.Available){
+        //     string msg = BTHelper.Read();
+        //     Debug.Log(msg);
+        // } else {
+        //     Debug.Log("No incoming message");
+        // }
+        // BTHelper.Connect();
+        foreach(var d in BTHelper.getPairedDevicesList())
+        {
+            Debug.Log(d.DeviceName);
         }
+        // Debug.Log(BTHelper.getPairedDevicesList().Count);
+    }
+
+    void OnBluetoothConnectedFailed(BluetoothHelper helper){
+        Debug.Log("Connection Failed");
     }
 
     void OnBluetoothConnected(BluetoothHelper helper)
@@ -61,6 +74,7 @@ public class Bluetooth : MonoBehaviour
         try{
             helper.StartListening();
             helper.SendData("Hi arduino!");
+            Debug.Log("Device Connected");
             
         }catch (Exception ex){
             x += ex.ToString();

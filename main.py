@@ -16,7 +16,7 @@ print("connected!")
 # OSC server address
 # ================== #
 # ip = "127.0.0.1"  # use "127.0.0.1" when testing on unity
-ip = "192.168.1.9"  # or local Oculus IP when testing with Oculus, changes with networks,
+ip = "192.168.2.165"  # or local Oculus IP when testing with Oculus, changes with networks,
 # download sidequest https://sidequestvr.com/
 # connect w/ cable, seem the top bar of sidequest to get the IP
 port = 5006
@@ -26,7 +26,7 @@ client = udp_client.SimpleUDPClient(ip, port)
 print("connected to OSC server at " + ip + ":" + str(port))
 
 # length of time recording
-seconds = 20
+seconds = 60
 
 # Read and record the data
 data = []  # empty list to store the data

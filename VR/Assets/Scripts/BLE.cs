@@ -57,6 +57,7 @@ public class BLE : MonoBehaviour
                 // Debug.Log(characteristic.getName());
                 Debug.Log(value[0]);
                 if (value[0] == 49 && _last != value[0]){
+                    Debug.Log("Current Time: " + System.DateTime.Now.ToString("hh.mm.ss.ffffff"));
                     audioSource.Play();
                 }
                 _last = value[0];
